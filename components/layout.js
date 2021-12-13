@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 
-import Header from '@/components/header'
-import Footer from '@/components/footer'
-import Showcase from '@/components/Showcase'
+import Header from '/components/header'
+import Footer from '/components/footer'
+import Showcase from '/components/Showcase'
 
 
 export default function Layout({ title, keywords, description, children }) {
