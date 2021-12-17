@@ -4,8 +4,9 @@ import { NEWS_API_URL } from '../../lib/constants';
 
 import Layout from '../../components/Layout';
 
+
 export default function NewsSingle({ title, featuredImg, content, date }) {
-    console.log(content);
+    
     return (
       <Layout>
             <article>

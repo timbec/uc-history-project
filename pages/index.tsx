@@ -12,11 +12,10 @@ import { GetStaticProps } from 'next';
 
 import styles from '../styles/Home.module.css'
 
-interface Props {
+// used this is a reference for adding TS with React Hooks: 
+// https://codersera.com/blog/react-hooks-with-typescript-use-state-and-use-effect-in-2020/
 
-}
-
-export default function HomePage({}) {
+export default function HomePage({}: {}): JSX.Element {
   
   const [newsPosts, setNewsPosts] = useState<Array<string>>([])
 
@@ -47,8 +46,8 @@ export default function HomePage({}) {
         <h1>Home </h1>
         {newsPosts && (
           <section className="news-conainter">
-            {newsPosts.map((id: number, post: object) => {
-              {console.log(post.title.rendered)}
+            {newsPosts.map((post: string, id:number) => {
+              {console.log(post)}
              return (
               <div key={id}>
                 <NewsItem post={post} />
@@ -62,11 +61,11 @@ export default function HomePage({}) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allNewsPostsData = await getAllNewsPostsFromServer()
-  return {
-    props: {
-      allNewsPostsData
-    }
-  }
-}
+// export const getStaticProps: GetStaticProps = async () => {
+//   const allNewsPostsData = await getAllNewsPostsFromServer()
+//   return {
+//     props: {
+//       allNewsPostsData
+//     }
+//   }
+// }

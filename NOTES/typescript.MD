@@ -116,3 +116,16 @@ useEffect(() => {
 
 Using Typescript with Hooks: 
 https://codersera.com/blog/react-hooks-with-typescript-use-state-and-use-effect-in-2020/
+
+
+## Part II
+
+I figured out (more or less) how to add typescript to `useState()` and `useEffect()`. However, I still wasn't sure how to properly add them to the components themselves. Courtesy of this [blog post](https://fettblog.eu/typescript-react/components/), I found this VS Code Extension: 
+https://marketplace.visualstudio.com/items?itemName=paulshen.paul-typescript-toolkit
+
+// example here: https://selvaganesh93.medium.com/setup-next-js-with-typescript-integration-dece94e43cf5
+
+// I guess functional components in TS don't need the 'function' declaration: 
+//https://fettblog.eu/typescript-react/components/
+
+Still unclear to me how to set up functional componets properly, and child components. 
