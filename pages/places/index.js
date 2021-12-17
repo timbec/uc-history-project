@@ -2,30 +2,35 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
 
-import Layout from '@/components/layout';
-import PlacesItem from '@/components/PlacesItem';
+import Layout from '../../components/layout';
+import PlacesItem from '../../components/PlacesItem';
 
 import { useState, useEffect } from 'react';
 import { getAllPlacessPostsFromServer } from '../../lib/utils'; 
 
-import styles from '@/styles/Home.module.css'
+import Loader from '../../components/Loader';
+
+import styles from '../../styles/Home.module.css'
 
 export default function PlacesPage() {
   const [placesPosts, setPlacesPosts] = useState([]);
+    //loader 
+  const [loading, setLoading] = useState(true); 
   useEffect(async () => {
-    let mounted = true; 
-    if(mounted) {
+    
+    if(loading) {
       const placesPostsFromServer = await getAllPlacessPostsFromServer(); 
 
       setPlacesPosts(placesPostsFromServer); 
+      setLoading(false);
     }
-    return () => (mounted = false); 
+    // return () => (mounted = false); 
   }, []);
   console.log(placesPosts);
   return (
     <Layout title="Uranium City Places Page">
         <h1>Places</h1>
-        {placesPosts && (
+        {placesPosts.length === 0 && <Loader /> }
           <section className="news-conainter">
             {placesPosts.map((post, id) => {
               {console.log(post.title.rendered)}
@@ -35,9 +40,7 @@ export default function PlacesPage() {
               </div>
              )
             })}
-
           </section>
-        )}
     </Layout>
   )
 }

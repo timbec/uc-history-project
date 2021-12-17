@@ -1,17 +1,13 @@
 import React from "react"
+// npm install styled-components
 // import styled from "styled-components"
 
-// const Screen = styled.div``
-
-// const Balls = styled.div``
 
 const Loader = () => {
     
   return (
       <div>
-        <div className="ball one">Loading One</div>
-        <div className="ball two">Loading Two</div>
-        <div className="ball three">Loading Three</div>
+        Loading Loading Loading. . . 
       </div>
   );
 };

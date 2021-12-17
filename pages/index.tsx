@@ -27,15 +27,11 @@ export default function HomePage({}: {}): JSX.Element {
 
   useEffect(() => {
     const getNewsPosts = async() => {
-        let mounted = true; 
           if(loading) {
-            alert('loading posts');
             const newsPostsFromServer = await getAllNewsPostsFromServer(); 
             setNewsPosts(newsPostsFromServer); 
-            alert('posts loaded');
             setLoading(false);
           }
-          return () => (mounted = false); 
       };
         getNewsPosts();
     }, []);
