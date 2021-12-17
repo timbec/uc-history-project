@@ -5,7 +5,8 @@ import React from "react"
 
 // const Balls = styled.div``
 
-const LoadingScreen = () => {
+const Loader = () => {
+    
   return (
       <div>
         <div className="ball one">Loading One</div>
@@ -15,4 +16,4 @@ const LoadingScreen = () => {
   );
 };
 
-export default LoadingScreen;
+export default Loader;

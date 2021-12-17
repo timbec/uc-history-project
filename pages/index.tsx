@@ -8,6 +8,8 @@ import NewsItem from '../components/NewsItem';
 import { useState, useEffect } from 'react';
 import { getAllNewsPostsFromServer } from '../lib/utils'; 
 
+import Loader from '../components/Loader';
+
 import { GetStaticProps } from 'next';
 
 import styles from '../styles/Home.module.css'
@@ -20,19 +22,22 @@ export default function HomePage({}: {}): JSX.Element {
   const [newsPosts, setNewsPosts] = useState<Array<string>>([])
 
   //loader 
-  const [loading, setLoading] = useState<boolean>(false); 
+  const [loading, setLoading] = useState<boolean>(true); 
 
 
   useEffect(() => {
     const getNewsPosts = async() => {
         let mounted = true; 
-          if(mounted) {
+          if(loading) {
+            alert('loading posts');
             const newsPostsFromServer = await getAllNewsPostsFromServer(); 
             setNewsPosts(newsPostsFromServer); 
+            alert('posts loaded');
+            setLoading(false);
           }
           return () => (mounted = false); 
       };
-      getNewsPosts();
+        getNewsPosts();
     }, []);
 
   // useEffect(async () => {
@@ -43,28 +48,23 @@ export default function HomePage({}: {}): JSX.Element {
   //   }
   //   return () => (mounted = false); 
   // }, []);
-  console.log(newsPosts);
 
-  useEffect(() => {
-    setLoading(true);
-  }, []);
-  
   return (
     <Layout title="Uranium City Home Page">
         <h1>Home </h1>
-        {newsPosts && (
-          <section className="news-conainter">
-            {newsPosts.map((post: string, id:number) => {
-              {console.log(post)}
-             return (
-              <div key={id}>
-                <NewsItem post={post} />
-              </div>
-             )
-            })}
-
-          </section>
-        )}
+        {/* This might provide a more elegant version, inside useEffect() hook (2nd answer) */}
+        {/* https://stackoverflow.com/questions/59474818/how-to-show-loader-in-react-using-hooks */}
+        {newsPosts.length === 0 && <Loader />}
+            <section className="news-container">
+              {newsPosts.map((post: string, id:number) => {
+                {console.log(post)}
+               return (
+                <div key={id}>
+                  <NewsItem post={post} />
+                </div>
+               )
+              })}
+            </section>
     </Layout>
   )
 }
