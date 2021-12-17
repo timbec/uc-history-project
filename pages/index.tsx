@@ -19,6 +19,9 @@ export default function HomePage({}: {}): JSX.Element {
   
   const [newsPosts, setNewsPosts] = useState<Array<string>>([])
 
+  //loader 
+  const [loading, setLoading] = useState<boolean>(false); 
+
 
   useEffect(() => {
     const getNewsPosts = async() => {
@@ -41,6 +44,11 @@ export default function HomePage({}: {}): JSX.Element {
   //   return () => (mounted = false); 
   // }, []);
   console.log(newsPosts);
+
+  useEffect(() => {
+    setLoading(true);
+  }, []);
+  
   return (
     <Layout title="Uranium City Home Page">
         <h1>Home </h1>
