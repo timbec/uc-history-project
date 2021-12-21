@@ -8,9 +8,15 @@ import NewsItem from '../components/NewsItem';
 import { useState, useEffect } from 'react';
 import { getAllNewsPostsFromServer } from '../lib/utils'; 
 
+//home page
+import getHomePagePosts from '../lib/utils';
+
+console.group(getHomePagePosts);
+
 import Loader from '../components/Loader';
 
 import { GetStaticProps } from 'next';
+import getInitialProps from 'next';
 
 import styles from '../styles/Home.module.css'
 
@@ -65,6 +71,7 @@ export default function HomePage({}: {}): JSX.Element {
   )
 }
 
+// or maybe it should be down here????
 // export const getStaticProps: GetStaticProps = async () => {
 //   const allNewsPostsData = await getAllNewsPostsFromServer()
 //   return {
