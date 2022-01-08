@@ -59,14 +59,14 @@ export default function NewsSingle({ title, featuredImg, content, date }) {
 // }
 
 export async function getServerSideProps({ query: { slug } }) {
-    const res = await axios.get(`${NEWS_API_URL}?slug=${slug}`);
+    const res = await axios.get(`${NEWS_API_URL}?link=${link}`);
     const news = await res.data;
     console.log('news: ' + news)
     const featuredImg = await getFeaturedImage(news[0].featured_media); 
     return {
       props: {
-        title: news[0].title.rendered, 
-        content: news[0].content.rendered, 
+        title: news[0].title, 
+        content: news[0].content, 
         featuredImg, 
         date: news[0].date
       }

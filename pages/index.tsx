@@ -6,12 +6,11 @@ import Layout from '../components/layout';
 import NewsItem from '../components/NewsItem';
 
 import { useState, useEffect } from 'react';
-import { getAllNewsPostsFromServer } from '../lib/utils'; 
 
-//home page
-import getHomePagePosts from '../lib/utils';
-
-console.group(getHomePagePosts);
+//content boxes 
+import NewsBox from '../components/content-boxes/NewsBox';
+import PlacesBox from '../components/content-boxes/PlacesBox';
+import StoriesBox from '../components/content-boxes/StoriesBox';
 
 import Loader from '../components/Loader';
 
@@ -30,53 +29,26 @@ export default function HomePage({}: {}): JSX.Element {
   //loader 
   const [loading, setLoading] = useState<boolean>(true); 
 
-
-  useEffect(() => {
-    const getNewsPosts = async() => {
-          if(loading) {
-            const newsPostsFromServer = await getAllNewsPostsFromServer(); 
-            setNewsPosts(newsPostsFromServer); 
-            setLoading(false);
-          }
-      };
-        getNewsPosts();
-    }, []);
-
-  // useEffect(async () => {
-  //   let mounted = true; 
-  //   if(mounted) {
-  //     const newsPostsFromServer = await getAllNewsPostsFromServer(); 
-  //     setNewsPosts(newsPostsFromServer); 
-  //   }
-  //   return () => (mounted = false); 
-  // }, []);
-
   return (
     <Layout title="Uranium City Home Page">
         <h1>Home </h1>
+        <p>Some content introducing UC Project</p>
+        {/* Probably want to have loader here. But how??? */}
+        <NewsBox />
+        <PlacesBox />
+        <StoriesBox />
         {/* This might provide a more elegant version, inside useEffect() hook (2nd answer) */}
         {/* https://stackoverflow.com/questions/59474818/how-to-show-loader-in-react-using-hooks */}
-        {newsPosts.length === 0 && <Loader />}
+        {/* {newsPosts.length === 0 && <Loader />}
             <section className="news-container">
               {newsPosts.map((post: string, id:number) => {
-                {console.log(post)}
                return (
                 <div key={id}>
                   <NewsItem post={post} />
                 </div>
                )
               })}
-            </section>
+            </section> */}
     </Layout>
   )
 }
-
-// or maybe it should be down here????
-// export const getStaticProps: GetStaticProps = async () => {
-//   const allNewsPostsData = await getAllNewsPostsFromServer()
-//   return {
-//     props: {
-//       allNewsPostsData
-//     }
-//   }
-// }

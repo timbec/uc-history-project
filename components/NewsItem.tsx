@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getAuthor, getFeaturedImage } from '../lib/utils';
 import parse from 'html-react-parser';
 
-
+// how did the output change that I have a different post object (doesn't contain 'date' method for example)
 export default function NewsItem({ post }: {
     post: Object
 }) {
@@ -33,15 +33,15 @@ export default function NewsItem({ post }: {
             <h4>{new Date(post.date).toDateString()}</h4>
             {/* <img className="excerpt-img" src={postImgAndAuthor ? postImgAndAuthor.featImg : 'default image'} /> */}
             <h1>
-            <Link href={`/news/${post.slug}`}>
-                <a dangerouslySetInnerHTML={{ __html: post.title.rendered }}>
+            <Link href={`/news/${post.link}`}>
+                <a dangerouslySetInnerHTML={{ __html: post.title }}>
                 </a>
             </Link>
             </h1>
             
-            <div className="excerpt__text" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}></div>
+            <div className="excerpt__text" dangerouslySetInnerHTML={{ __html: post.excerpt}}></div>
     
-            <Link href={`/post/${post.slug}`}>
+            <Link href={`/post/${post.link}`}>
           <a className="mt-3 text-blue-800 bottom-0">Continue reading</a>
         </Link>
         </article>

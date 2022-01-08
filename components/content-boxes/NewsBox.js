@@ -1,29 +1,25 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
-//might need later. 
-// import { getStaticProps } from 'next';
+import { getAllNewsPostsFromServer } from '../../lib/utils';
+import Loader from '../../components/Loader'; 
 
-import Layout from '../../components/layout';
 import NewsItem from '../../components/NewsItem';
 
-import { useState, useEffect } from 'react';
-import { getAllNewsPostsFromServer } from '../../lib/utils'; 
 
-import Loader from '../../components/Loader'; 
-import styles from '../../styles/Home.module.css'
+// rename .txs and convert to typescript later
 
-export default function NewsPage({}: {}): JSX.Element {
-
-  const [newsPosts, setNewsPosts] = useState<Array<string>>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+console.log(getAllNewsPostsFromServer)
+export default function NewsBox() {
+const [newsPosts, setNewsPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getNewsPosts = async() => {
       if(loading) {
         const newsPostsFromServer = await getAllNewsPostsFromServer(); 
-        setNewsPosts(newsPostsFromServer); 
+        // can pass in number of posts as props
+        setNewsPosts(newsPostsFromServer.slice(0,6)); 
         setLoading(false);
       }
     };
@@ -32,8 +28,8 @@ export default function NewsPage({}: {}): JSX.Element {
 
   console.log(newsPosts);
   return (
-    <Layout title="Uranium City News Page">
-        <h1>Uranium City News</h1>
+    <article className="content-box">
+        <h1>Latest News</h1>
         {newsPosts.length === 0 && <Loader /> } 
           <section className="news-conainter">
             {newsPosts.map((post, id) => {
@@ -45,7 +41,6 @@ export default function NewsPage({}: {}): JSX.Element {
              )
             })}
           </section>
-    </Layout>
+    </article>
   )
 }
-
