@@ -9,16 +9,17 @@ export default function PlacesItem({ post }) {
     useEffect(() => {
         let mounted = true; 
         if(mounted) {
-            const author = getAuthor(post.author); 
-            console.log(author);
-            const featuredImg = getFeaturedImage(post.featured_media);
+            // const author = getAuthor(post.author); 
+            // console.log(author);
+            // const featuredImg = getFeaturedImage(post.fimg_url);
+            // console.log(featuredImg);
             // resolve the Promise in getAuthor and getFeaturedImg async functions using Promise.all
-            Promise.all([author, featuredImg]).then((res) => {
-                setPostImgAndAuthor({
-                    author: res[0],
-                    featImgUrl: res[1],
-                }); 
-            });
+            // Promise.all([featuredImg]).then((res) => {
+            //     setPostImgAndAuthor({
+            //         author: res[0],
+            //         featImgUrl: res[1],
+            //     }); 
+            // });
         }
         return () => {
             mounted = false; 
@@ -28,7 +29,7 @@ export default function PlacesItem({ post }) {
         <article className="excerpt">
             {/* Use Next (Image) tag?? */}
             <h4>{new Date(post.date).toDateString()}</h4>
-            <img className="excerpt-img" src={postImgAndAuthor ? postImgAndAuthor.featImg : 'default image'} />
+            <img className="excerpt-img" src={post.fimg_url} />
             <h1>
             <Link href={`/places/${post.slug}`}>
                 <a dangerouslySetInnerHTML={{ __html: post.title.rendered }}>

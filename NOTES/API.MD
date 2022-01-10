@@ -22,3 +22,11 @@ mounted() {
 
 For an example: 
 `http://localhost:8888/uc-history/wp-json/wp/v2/places?_embed`
+
+List of WP-API modifications and WP snippets: 
+
+https://github.com/dalenguyen/wordpress-snippets
+
+Get featured image: 
+
+https://github.com/dalenguyen/wordpress-snippets/blob/master/src/get_featured_image_from_rest_api.php

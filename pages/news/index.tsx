@@ -36,8 +36,7 @@ export default function NewsPage({}: {}): JSX.Element {
         <h1>Uranium City News</h1>
         {newsPosts.length === 0 && <Loader /> } 
           <section className="news-conainter">
-            {newsPosts.map((post, id) => {
-              {console.log(post.title)}
+            {newsPosts.map((post:string, id:number) => {
              return (
               <div key={id}>
                 <NewsItem post={post} />

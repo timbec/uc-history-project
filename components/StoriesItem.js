@@ -4,21 +4,22 @@ import { getAuthor, getFeaturedImage } from '../lib/utils';
 import parse from 'html-react-parser';
 
 export default function StoriesItem({ post }) {
+    console.log(post);
     const [postImgAndAuthor, setPostImgAndAuthor] = useState({ featImgUrl: '', author: '' });
     useEffect(() => {
         let mounted = true; 
         if(mounted) {
-            const author = getAuthor(post.author); 
-            console.log(author);
-            const featuredImg = getFeaturedImage(post.featured_media);
-            console.log(featuredImg)
+            // const author = getAuthor(post.author); 
+            // console.log(author);
+            // const featuredImg = getFeaturedImage(post.fimg_url);
+            // console.log(featuredImg);
             // resolve the Promise in getAuthor and getFeaturedImg async functions using Promise.all
-            Promise.all([author, featuredImg]).then((res) => {
-                setPostImgAndAuthor({
-                    author: res[0],
-                    featImgUrl: res[1],
-                }); 
-            });
+            // Promise.all([featuredImg]).then((res) => {
+            //     setPostImgAndAuthor({
+            //         author: res[0],
+            //         featImgUrl: res[1],
+            //     }); 
+            // });
         }
         return () => {
             mounted = false; 
@@ -26,12 +27,11 @@ export default function StoriesItem({ post }) {
     })
     return (
         <article className="excerpt">
-            {console.log(postImgAndAuthor.featImg)}
             {/* Use Next (Image) tag?? */}
             <h4>{new Date(post.date).toDateString()}</h4>
-            <img className="excerpt-img" src={postImgAndAuthor ? postImgAndAuthor.featImg : 'default image'} />
+            <img className="excerpt-img" src={post.fimg_url} />
             <h1>
-            <Link href={`/stories/${post.slug}`}>
+            <Link href={`/writing/${post.slug}`}>
                 <a dangerouslySetInnerHTML={{ __html: post.title.rendered }}>
                 </a>
             </Link>
