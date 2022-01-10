@@ -11,7 +11,7 @@ export default function header() {
                 </Link>
             </h1>
             <div className="sub-logo">sublogo</div>
-
+                <h4>Helping Keep Uranium City Alive on the Web</h4>
             <nav>
                 <ul>
                     <li>

@@ -31,7 +31,7 @@ export default function StoriesItem({ post }) {
             <h4>{new Date(post.date).toDateString()}</h4>
             <img className="excerpt-img" src={post.fimg_url} />
             <h1>
-            <Link href={`/writing/${post.slug}`}>
+            <Link href={`/stories/${post.slug}`}>
                 <a dangerouslySetInnerHTML={{ __html: post.title.rendered }}>
                 </a>
             </Link>
