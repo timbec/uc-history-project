@@ -4,14 +4,20 @@ import styles from '../styles/Header.module.css'
 export default function header() {
     return (
         <header className="main-header">
-            <div className="logo">mainlogo</div>
-            <h1>
-                <Link href="/">
-                Uranium City History Project
-                </Link>
-            </h1>
-            <div className="sub-logo">sublogo</div>
-                <h4>Helping Keep Uranium City Alive on the Web</h4>
+            <div className="main-header__boxes">
+                minehead
+                <div className="main-header__boxes--titles">
+                    <h1>
+                        <Link href="/">
+                        Uranium City History Project
+                        </Link>
+                    </h1>
+                    <div className="sub-logo">
+                        <h4>Helping Keep Uranium City Alive on the Web</h4>
+                    </div> 
+                </div>
+                atom symbol
+            </div>
             <nav>
                 <ul>
                     <li>
