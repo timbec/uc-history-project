@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAuthor, getDefaultLibFilePath, getFeaturedImage } from '../../lib/utils';
 import { STORIES_API_URL } from '../../lib/constants';
 
-import Layout from '../../components/Layout';
+import Layout from '@/components/layout';
 
 export default function StoriesSingle({ title, featuredImg, content, date }) {
     console.log(content);
