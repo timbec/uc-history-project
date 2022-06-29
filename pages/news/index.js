@@ -22,7 +22,7 @@ export default function NewsPage() {
   }, []);
   console.log(newsPosts);
   return (
-    <Layout title="Uranium City Home Page">
+    <Layout title="Uranium City News Page">
         <h1>Uranium City News</h1>
         {newsPosts && (
           <section className="news-conainter">
