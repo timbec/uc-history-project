@@ -34,11 +34,11 @@ export default function HomePage() {
     }
     return () => (mounted = false);
   }, []);
-  console.log('Comments: ' + comments);
 
   return (
     <Layout title="Uranium City Home Page">
       <h1>Home </h1>
+      {/* What happened to the 'loading' effect? */}
       {newsPosts && (
         <section className="news-container">
           {newsPosts.map((post, id) => {
@@ -54,7 +54,6 @@ export default function HomePage() {
       )}
 
       <h3>Comments: </h3>
-      {console.log(comments)}
       {comments && (
         <section className="comments-container">
           {comments.map((post, id) => {
