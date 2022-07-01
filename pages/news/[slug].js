@@ -5,22 +5,22 @@ import { NEWS_API_URL } from '../../lib/constants';
 import Layout from '@/components/layout';
 
 export default function NewsSingle({ title, featuredImg, content, date }) {
-    console.log(content);
-    return (
-      <Layout>
-            <article>
-            <span className="post-date">
-            {new Date(date).toDateString()}
-            </span>
-            <img src={featuredImg} />
-            <h1 dangerouslySetInnerHTML={{ __html: title}}></h1>
-            <div dangerouslySetInnerHTML={{ __html: content}}></div>
-            <div>
-            
-            </div>
-        </article>
-      </Layout>
-    )
+  console.log(content);
+  return (
+    <Layout>
+      <article>
+        <span className="post-date">
+          {new Date(date).toDateString()}
+        </span>
+        <img src={featuredImg} />
+        <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
+        <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        <div>
+
+        </div>
+      </article>
+    </Layout>
+  )
 }
 
 // export async function getStaticPaths() {
@@ -28,7 +28,7 @@ export default function NewsSingle({ title, featuredImg, content, date }) {
 //     const posts = res.data; 
 //     //get the paths we want to pre-render based on posts returned
 //     const paths = posts.map((post) => ({
-        
+
 //         params: { slug: post.slug.toString() }, 
 //     }));
 //     console.log(paths)
@@ -54,21 +54,24 @@ export default function NewsSingle({ title, featuredImg, content, date }) {
 //             author, 
 //             date: post.date },
 //     };
-    
+
 // }
 
 export async function getServerSideProps({ query: { slug } }) {
-    const res = await axios.get(`${NEWS_API_URL}?slug=${slug}`);
-    const news = await res.data;
-    console.log('news: ' + news)
-    const featuredImg = await getFeaturedImage(news[0].featured_media); 
-    return {
-      props: {
-        title: news[0].title.rendered, 
-        content: news[0].content.rendered, 
-        featuredImg, 
-        date: news[0].date
-      }
-    };
-  }
-  
+  const res = await axios.get(`${NEWS_API_URL}?slug=${slug}`);
+  const news = await res.data;
+  console.log('news: ' + news)
+
+  const comments = await axios.get('http://uchistory.local/' + `comments?post=${post.slug}`);
+
+  console.log(comments);
+  const featuredImg = await getFeaturedImage(news[0].featured_media);
+  return {
+    props: {
+      title: news[0].title.rendered,
+      content: news[0].content.rendered,
+      featuredImg,
+      date: news[0].date
+    }
+  };
+}
